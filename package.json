@@ -1,5 +1,5 @@
 {
-  "name": "livereload",
+  "name": "naga-livereload",
   "description": "LiveReload server",
   "version": "0.8.2",
   "contributors": [
