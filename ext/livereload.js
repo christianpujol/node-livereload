@@ -1230,7 +1230,12 @@ Options.extract = function (document) {
 
         if (mm[2]) {
           options.port = parseInt(mm[2], 10);
+        } else if (src.startsWith('http//:')) {
+          options.port = 80;
+        } else if (src.startsWith('https://')) {
+          options.port = 443;
         }
+
       }
 
       if (m[2]) {
