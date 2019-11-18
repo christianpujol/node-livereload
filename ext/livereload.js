@@ -686,7 +686,7 @@ class Connector {
     this.Timer = Timer;
     this.handlers = handlers;
     const path = this.options.path ? "".concat(this.options.path) : 'livereload';
-    this._uri = "ws".concat(this.options.https ? 's' : '', "://").concat(this.options.host, ":").concat(this.options.ws || this.options.port, "/").concat(path);
+    this._uri = "ws".concat(this.options.https ? 's' : '', "://").concat(this.options.host, ":").concat(this.options.port, "/").concat(path);
     this._nextDelay = this.options.mindelay;
     this._connectionDesired = false;
     this.protocol = 0;
@@ -1023,7 +1023,7 @@ class LiveReload {
           this.listeners.connect();
         }
 
-        this.log("LiveReload is connected to ".concat(this.options.host, ":").concat(this.options.ws || this.options.port, " (protocol v").concat(protocol, ")."));
+        this.log("LiveReload is connected to ".concat(this.options.host, ":").concat(this.options.port, " (protocol v").concat(protocol, ")."));
         return this.analyze();
       },
       error: e => {
@@ -1044,23 +1044,23 @@ class LiveReload {
 
         switch (reason) {
           case 'cannot-connect':
-            return this.log("LiveReload cannot connect to ".concat(this.options.host, ":").concat(this.options.ws || this.options.port, ", will retry in ").concat(nextDelay, " sec."));
+            return this.log("LiveReload cannot connect to ".concat(this.options.host, ":").concat(this.options.port, ", will retry in ").concat(nextDelay, " sec."));
 
           case 'broken':
-            return this.log("LiveReload disconnected from ".concat(this.options.host, ":").concat(this.options.ws || this.options.port, ", reconnecting in ").concat(nextDelay, " sec."));
+            return this.log("LiveReload disconnected from ".concat(this.options.host, ":").concat(this.options.port, ", reconnecting in ").concat(nextDelay, " sec."));
 
           case 'handshake-timeout':
-            return this.log("LiveReload cannot connect to ".concat(this.options.host, ":").concat(this.options.ws || this.options.port, " (handshake timeout), will retry in ").concat(nextDelay, " sec."));
+            return this.log("LiveReload cannot connect to ".concat(this.options.host, ":").concat(this.options.port, " (handshake timeout), will retry in ").concat(nextDelay, " sec."));
 
           case 'handshake-failed':
-            return this.log("LiveReload cannot connect to ".concat(this.options.host, ":").concat(this.options.ws || this.options.port, " (handshake failed), will retry in ").concat(nextDelay, " sec."));
+            return this.log("LiveReload cannot connect to ".concat(this.options.host, ":").concat(this.options.port, " (handshake failed), will retry in ").concat(nextDelay, " sec."));
 
           case 'manual': // nop
 
           case 'error': // nop
 
           default:
-            return this.log("LiveReload disconnected from ".concat(this.options.host, ":").concat(this.options.ws || this.options.port, " (").concat(reason, "), reconnecting in ").concat(nextDelay, " sec."));
+            return this.log("LiveReload disconnected from ".concat(this.options.host, ":").concat(this.options.port, " (").concat(reason, "), reconnecting in ").concat(nextDelay, " sec."));
         }
       },
       message: message => {
@@ -1092,7 +1092,7 @@ class LiveReload {
       reloadMissingCSS: message.reloadMissingCSS != null ? message.reloadMissingCSS : true,
       originalPath: message.originalPath || '',
       overrideURL: message.overrideURL || '',
-      serverURL: "http://".concat(this.options.host, ":").concat(this.options.ws || this.options.port)
+      serverURL: "http://".concat(this.options.host, ":").concat(this.options.port)
     });
   }
 
